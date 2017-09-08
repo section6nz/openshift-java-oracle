@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: java-oracle
+spec:
+  triggers:
+    - type: ConfigChange
+    - type: imageChange
+      imageChange:
+        from:
+          kind: ImageStreamTag
+          name: rhel-atomic:latest
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'git@github.com:section6nz/openshift-java-oracle.git'
+      ref: master
+      contextDir: images/java-oracle
+    sourceSecret:
+      name: deployment-key
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rhel-atomic:latest
+      noCache: true
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'java-oracle:latest'
+  
