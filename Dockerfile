@@ -1,6 +1,7 @@
 FROM rhel-atomic:latest
 
 ARG JAVA_VERSION=1.8.0
+ARG JAVA_REPO=rhel-7-server-thirdparty-oracle-java-rpms
 
 LABEL name="java-oracle" \
     version="8" \
@@ -13,7 +14,7 @@ ENV JAVA_HOME="/usr/lib/jvm/jre" \
 
 RUN microdnf install \
         --enablerepo=rhel-7-server-rpms \
-        --enablerepo=rhel-7-server-thirdparty-oracle-java-rpms \
+        --enablerepo=${JAVA_REPO} \
         --nodocs \
         java-${JAVA_VERSION}-oracle \
     && microdnf clean all \
