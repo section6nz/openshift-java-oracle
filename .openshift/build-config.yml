@@ -14,7 +14,7 @@ spec:
   source:
     type: Git
     git:
-      uri: 'git@github.com:section6nz/openshift-java-oracle.git'
+      uri: 'git@github.com:suejon/openshift-java-oracle.git'
       ref: master
       contextDir: images/java-oracle
     sourceSecret:
